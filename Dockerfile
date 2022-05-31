@@ -227,7 +227,7 @@ RUN \
     clean-layer.sh
 
 RUN \
-    OPEN_RESTY_VERSION="1.19.3.2" && \
+    OPEN_RESTY_VERSION="1.21.4.1" && \
     mkdir $RESOURCES_PATH"/openresty" && \
     cd $RESOURCES_PATH"/openresty" && \
     apt-get update && \
@@ -266,8 +266,8 @@ ENV \
     # TODO: CONDA_DIR is deprecated and should be removed in the future
     CONDA_DIR=/opt/conda \
     CONDA_ROOT=/opt/conda \
-    PYTHON_VERSION="3.9.7" \
-    CONDA_PYTHON_DIR=/opt/conda/lib/python3.9.7 \
+    PYTHON_VERSION="3.9.13" \
+    CONDA_PYTHON_DIR=/opt/conda/lib/python3.9 \
     #MINICONDA_VERSION=4.9.2 \
     #MINICONDA_MD5=78f39f9bae971ec1ae7969f0516017f2413f17796670f7040725dd83fcff5689 \
     CONDA_VERSION=4.9.2
@@ -343,7 +343,7 @@ ENV PATH=$HOME/.local/bin:$PATH
 RUN \
     apt-get update && \
     # https://nodejs.org/en/about/releases/ use even numbered releases, i.e. LTS versions
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - && \
+    curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - && \
     apt-get install -y nodejs && \
     # As conda is first in path, the commands 'node' and 'npm' reference to the version of conda.
     # Replace those versions with the newly installed versions of node
@@ -573,16 +573,16 @@ RUN \
     # Install some basics - required to run container
     conda install -y --update-all \
             'python='$PYTHON_VERSION \
-            'ipython=7.24.*' \
-            'notebook=6.4.*' \
-            'jupyterlab=3.0.*' \
+            'ipython' \
+            'notebook' \
+            'jupyterlab' \
             # TODO: nbconvert 6.x makes problems with template_path
-            'nbconvert=5.6.*' \
+            'nbconvert' \
             # TODO: temp fix: yarl version 1.5 is required for lots of libraries.
-            'yarl==1.5.*' \
+            'yarl' \
             # TODO install scipy, numpy, sklearn, and numexpr via conda for mkl optimizaed versions: https://docs.anaconda.com/mkl-optimizations/
-            'scipy==1.7.*' \
-            'numpy==1.19.*' \
+            'scipy' \
+            'numpy' \
             scikit-learn \
             numexpr && \
             # installed via apt-get and pip: protobuf \
@@ -610,7 +610,7 @@ RUN \
     # Install mkldnn
     conda install -y --freeze-installed -c mingfeima mkldnn && \
     # Install pytorch - cpu only
-    conda install -y -c pytorch "pytorch==1.9.*" cpuonly && \
+    conda install -y -c pytorch "pytorch" cpuonly && \
     # Install light pip requirements
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed -r ${RESOURCES_PATH}/libraries/requirements-light.txt && \
     # If light light flavor - exit here
@@ -780,7 +780,7 @@ RUN \
         exit 0 ; \
     fi \
     # Install jupyterlab language server support
-    && pip install jupyterlab-lsp==3.7.0 jupyter-lsp==1.3.0 && \
+    && pip install jupyterlab-lsp jupyter-lsp && \
     # $lab_ext_install install @krassowski/jupyterlab-lsp@2.0.8 && \
     # For Plotly
     $lab_ext_install jupyterlab-plotly && \
