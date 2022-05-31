@@ -13,7 +13,7 @@ for arg in "$@"; do
 done
 
 echo "Installing Dev Utils Collection. Please wait..."
-# Add bazel repo: https://docs.bazel.build/versions/master/install-ubuntu.html
+# Add bazel repo: https://bazel.build/install/ubuntu
 echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
 curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
 
