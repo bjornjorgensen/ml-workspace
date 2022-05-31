@@ -67,7 +67,7 @@ nox # Flexible test automation.
 pip-tools # pip-tools keeps your pinned dependencies fresh.
 virtualenvwrapper # Enhancements to virtualenv
 isort # A Python utility / library to sort Python imports.
-jedi # An autocompletion tool for Python that can be used for text editors.
+#jedi # An autocompletion tool for Python that can be used for text editors.
 pipreqs # Pip requirements.txt generator based on imports in project
 mypy # Static type checker
 
