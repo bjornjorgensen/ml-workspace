@@ -1,46 +1,46 @@
-# Light Requirements
+# # Light Requirements
 
-## ML Frameworks
-# pytorch is installed via conda
-# TODO: 2.3.1 version uses tensorboard 2.4.0 with bug with relativ pathes
-# keras: comes preinstalled with tenserflow 2.x
-# scikit-learn installed via conda
-intel-tensorflow # TensorFlow is an open source machine learning framework for everyone.
-xgboost # Scalable, Portable and Distributed Gradient Boosting
-statsmodels # Statistical modeling and econometrics in Python
-mxnet-mkl # MXNet is an ultra-scalable deep learning framework. This version uses MKLDNN.
-networkx # Python package for creating and manipulating graphs and networks
+# ## ML Frameworks
+# # pytorch is installed via conda
+# # TODO: 2.3.1 version uses tensorboard 2.4.0 with bug with relativ pathes
+# # keras: comes preinstalled with tenserflow 2.x
+# # scikit-learn installed via conda
+# intel-tensorflow # TensorFlow is an open source machine learning framework for everyone.
+# xgboost # Scalable, Portable and Distributed Gradient Boosting
+# statsmodels # Statistical modeling and econometrics in Python
+# mxnet-mkl # MXNet is an ultra-scalable deep learning framework. This version uses MKLDNN.
+# networkx # Python package for creating and manipulating graphs and networks
 
-## NLP
-spacy # Industrial-strength Natural Language Processing (NLP) with Python and Cython
-nltk # Natural Language Toolkit
-fasttext # fasttext Python bindings, a library for efficient learning of word representations and sentence classification.
-beautifulsoup4 # Beautiful Soup is a library that makes it easy to scrape information from web pages.
-soupsieve # A modern CSS selector implementation for Beautiful Soup.
+# ## NLP
+# spacy # Industrial-strength Natural Language Processing (NLP) with Python and Cython
+# nltk # Natural Language Toolkit
+# fasttext # fasttext Python bindings, a library for efficient learning of word representations and sentence classification.
+# beautifulsoup4 # Beautiful Soup is a library that makes it easy to scrape information from web pages.
+# soupsieve # A modern CSS selector implementation for Beautiful Soup.
 
-# Images
-opencv-python-headless # Wrapper package for OpenCV python bindings.
-opencv-python # Wrapper package for OpenCV python bindings.
-scikit-image # Image processing routines for SciPy - version 0.14.1 is not compatible with numpy 16
+# # Images
+# opencv-python-headless # Wrapper package for OpenCV python bindings.
+# opencv-python # Wrapper package for OpenCV python bindings.
+# scikit-image # Image processing routines for SciPy - version 0.14.1 is not compatible with numpy 16
 
-## Jupyter
-ipywidgets # IPython HTML widgets for Jupyter
-widgetsnbextension # IPython HTML widgets for Jupyter
-tensorboardX # TensorBoardX lets you watch Tensors Flow without Tensorflow
-pandas-profiling # Generate profile report for pandas DataFrame
+# ## Jupyter
+# ipywidgets # IPython HTML widgets for Jupyter
+# widgetsnbextension # IPython HTML widgets for Jupyter
+# tensorboardX # TensorBoardX lets you watch Tensors Flow without Tensorflow
+# pandas-profiling # Generate profile report for pandas DataFrame
 
-## Others
-pymongo # Mongo Client
-fire # A library for automatically generating command line interfaces.
-patsy # A Python package for describing statistical models and for building design matrices.
-boto3 # The AWS SDK for Python
-better-exceptions # Pretty and helpful exceptions, automatically
-pretty-errors # Prettifies Python exception output to make it legible.
-networkx # Python package for creating and manipulating graphs and networks
-prometheus-client # Python client for the Prometheus monitoring system.
-typer # Typer, build great CLIs. Easy to code. Based on Python type hints.
-numba # Compiling Python code using LLVM
-python-language-server # Python Language Server for the Language Server Protocol
-pyls-mypy # Mypy linter for the Python Language Server
-pyls-isort # Isort plugin for python-language-server
-pyls-black # Black plugin for the Python Language Server
+# ## Others
+# pymongo # Mongo Client
+# fire # A library for automatically generating command line interfaces.
+# patsy # A Python package for describing statistical models and for building design matrices.
+# boto3 # The AWS SDK for Python
+# better-exceptions # Pretty and helpful exceptions, automatically
+# pretty-errors # Prettifies Python exception output to make it legible.
+# networkx # Python package for creating and manipulating graphs and networks
+# prometheus-client # Python client for the Prometheus monitoring system.
+# typer # Typer, build great CLIs. Easy to code. Based on Python type hints.
+# numba # Compiling Python code using LLVM
+# python-language-server # Python Language Server for the Language Server Protocol
+# pyls-mypy # Mypy linter for the Python Language Server
+# pyls-isort # Isort plugin for python-language-server
+# pyls-black # Black plugin for the Python Language Server

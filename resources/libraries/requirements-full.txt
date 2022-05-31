@@ -1,267 +1,267 @@
-# Auto-generated via library evaluation notebook
+# # Auto-generated via library evaluation notebook
 
-alembic
-amqp
-anyio
-Augmentor
-Bottleneck
-Faker
-ImageHash
-MechanicalSoup
-PyMySQL
-addict
-albumentations
-altair
-annoy
-arrow
-attrs
-autograd
-autokeras
-bandit
-bayesian-optimization
-blaze
-boltons
-bqplot
-cassandra-driver
-category_encoders
-celery
-chainer
-chardet
-cloudant
-# coremltools==4.1
-csvkit
-cx-Oracle
-cytoolz
-dask-ml
-dask
-dataset
-datasketch
-deap
-dgl
-diamond
-distributed
-dm-sonnet
-docker
-edward
-einops
-elasticsearch-dsl
-elasticsearch
-eli5
-empyrical
-fairseq
-fastai
-fastapi
-featuretools
-flashtext
-flatbuffers
-folium
-foolbox
-fs
-ftfy
-fuzzywuzzy
-gensim
-geocoder
-geojson
-geoplotlib
-geopy
-gluoncv
-gluonnlp
-google-cloud-storage
-google_images_download
-gpytorch
-graphene
-grip
-gunicorn
-gym
-holoviews
-hyperopt
-h5py
-# imageai==2.1.6
-imbalanced-learn
-imgaug
-imutils
-inflect
-influxdb
-ipyparallel
-jax
-jaxlib
-jellyfish
-joblib
-jsonpickle
-jupyter-packaging
-jupyterlab-widgets
-kafka-python
-kaggle
-keract
-keras
-Keras-Applications
-Keras-Preprocessing
-keras-rl
-keras-tuner
-keras-vis
-kiwisolver
-kmodes
-knockknock
-kombu
-langid
-lazycluster
-leather
-librosa
-lifelines
-lightfm
-lightgbm
-lime
-line_profiler
-lmdb
-luigi
-lxml
-Markdown
-MarkupSafe
-marshmallow
-matplotlib
-memory_profiler
-mesh-tensorflow
-metric-learn
-micawber
-minio
-mlflow
-mlxtend
-mmdnn
-# modin==0.9.1
-mongo-connector
-motor
-mrjob
-mysqlclient
-neo4j-driver
-nevergrad
-nose2
-onnx
-onnxruntime
-optuna
-pandarallel
-pandas-datareader
-pandas-summary
-pandasql
-path.py
-peewee
-petl
-pickledb
-pipdeptree
-plotly
-prettytable
-psycopg
-py-spy
-pyahocorasick
-pydub
-pyecharts
-pyexcel-xlsx
-pyfunctional
-pyhdb
-pyinstrument
-pylama
-pyod
-pyodbc
-pyro-ppl
-pytesseract
-# pytextrank==3.1.1 Comment: requires a version of graphviz currently not supported by gluoncv
-python-magic
-pytorch-ignite
-# pytorch-lightning==1.3.4 Comment: remove as it is not compatible with tensorboard~=2.5 yet but others, like tensorflow, require that
-pytorch-nlp
-PyYAML
-pyzmq
-redis
-requests-html
-rich
-rope
-safety
-sagemaker
-scalene
-scikit-optimize
-scikit-plot
-scikit-surprise
-scipy
-scrapy
-sentencepiece
-shap
-sklearn-pandas
-skorch
-smart-open
-spektral
-stop-words
-streamlit
-streamz
-tables
-tablib
-tensorboard
-tensorflow-addons
-tensorflow-datasets
-tensorflow-hub
-tensorflow-model-optimization
-tensorflow-text
-tensorflowonspark
-tensorlayer
-tensorly
-tensorpack
-textacy
-textblob
-textdistance
-tf-explain
-tflearn
-theano
-thinc
-tinydb
-tokenizers
-torch
-torch-geometric
-torchsummary
-torchvision
-torchaudio
-torchtext
-tpot
-transformers
-# tsfresh==0.18.0 Comment: has a dependency to matrixprofile which has a conflict of the protobuf library
-tslearn
-typing-extensions
-umap-learn
-vega
-vega_datasets
-vispy
-vowpalwabbit
-websockets
-wordcloud
-xarray
-xlearn
-xlrd
-xmltodict
-yapf
-yappi
-# yellowbrick==1.3.post1
-yfinance
-you-get
-# pycaret==2.3.1
-crc32c
-SoundFile
-gpflow
+# alembic
+# amqp
+# anyio
+# Augmentor
+# Bottleneck
+# Faker
+# ImageHash
+# MechanicalSoup
+# PyMySQL
+# addict
+# albumentations
+# altair
+# annoy
+# arrow
+# attrs
+# autograd
+# autokeras
+# bandit
+# bayesian-optimization
+# blaze
+# boltons
+# bqplot
+# cassandra-driver
+# category_encoders
+# celery
+# chainer
+# chardet
+# cloudant
+# # coremltools==4.1
+# csvkit
+# cx-Oracle
+# cytoolz
+# dask-ml
+# dask
+# dataset
+# datasketch
+# deap
+# dgl
+# diamond
+# distributed
+# dm-sonnet
+# docker
+# edward
+# einops
+# elasticsearch-dsl
+# elasticsearch
+# eli5
+# empyrical
+# fairseq
+# fastai
+# fastapi
+# featuretools
+# flashtext
+# flatbuffers
+# folium
+# foolbox
+# fs
+# ftfy
+# fuzzywuzzy
+# gensim
+# geocoder
+# geojson
+# geoplotlib
+# geopy
+# gluoncv
+# gluonnlp
+# google-cloud-storage
+# google_images_download
+# gpytorch
+# graphene
+# grip
+# gunicorn
+# gym
+# holoviews
+# hyperopt
+# h5py
+# # imageai==2.1.6
+# imbalanced-learn
+# imgaug
+# imutils
+# inflect
+# influxdb
+# ipyparallel
+# jax
+# jaxlib
+# jellyfish
+# joblib
+# jsonpickle
+# jupyter-packaging
+# jupyterlab-widgets
+# kafka-python
+# kaggle
+# keract
+# keras
+# Keras-Applications
+# Keras-Preprocessing
+# keras-rl
+# keras-tuner
+# keras-vis
+# kiwisolver
+# kmodes
+# knockknock
+# kombu
+# langid
+# lazycluster
+# leather
+# librosa
+# lifelines
+# lightfm
+# lightgbm
+# lime
+# line_profiler
+# lmdb
+# luigi
+# lxml
+# Markdown
+# MarkupSafe
+# marshmallow
+# matplotlib
+# memory_profiler
+# mesh-tensorflow
+# metric-learn
+# micawber
+# minio
+# mlflow
+# mlxtend
+# mmdnn
+# # modin==0.9.1
+# mongo-connector
+# motor
+# mrjob
+# mysqlclient
+# neo4j-driver
+# nevergrad
+# nose2
+# onnx
+# onnxruntime
+# optuna
+# pandarallel
+# pandas-datareader
+# pandas-summary
+# pandasql
+# path.py
+# peewee
+# petl
+# pickledb
+# pipdeptree
+# plotly
+# prettytable
+# psycopg
+# py-spy
+# pyahocorasick
+# pydub
+# pyecharts
+# pyexcel-xlsx
+# pyfunctional
+# pyhdb
+# pyinstrument
+# pylama
+# pyod
+# pyodbc
+# pyro-ppl
+# pytesseract
+# # pytextrank==3.1.1 Comment: requires a version of graphviz currently not supported by gluoncv
+# python-magic
+# pytorch-ignite
+# # pytorch-lightning==1.3.4 Comment: remove as it is not compatible with tensorboard~=2.5 yet but others, like tensorflow, require that
+# pytorch-nlp
+# PyYAML
+# pyzmq
+# redis
+# requests-html
+# rich
+# rope
+# safety
+# sagemaker
+# scalene
+# scikit-optimize
+# scikit-plot
+# scikit-surprise
+# scipy
+# scrapy
+# sentencepiece
+# shap
+# sklearn-pandas
+# skorch
+# smart-open
+# spektral
+# stop-words
+# streamlit
+# streamz
+# tables
+# tablib
+# tensorboard
+# tensorflow-addons
+# tensorflow-datasets
+# tensorflow-hub
+# tensorflow-model-optimization
+# tensorflow-text
+# tensorflowonspark
+# tensorlayer
+# tensorly
+# tensorpack
+# textacy
+# textblob
+# textdistance
+# tf-explain
+# tflearn
+# theano
+# thinc
+# tinydb
+# tokenizers
+# torch
+# torch-geometric
+# torchsummary
+# torchvision
+# torchaudio
+# torchtext
+# tpot
+# transformers
+# # tsfresh==0.18.0 Comment: has a dependency to matrixprofile which has a conflict of the protobuf library
+# tslearn
+# typing-extensions
+# umap-learn
+# vega
+# vega_datasets
+# vispy
+# vowpalwabbit
+# websockets
+# wordcloud
+# xarray
+# xlearn
+# xlrd
+# xmltodict
+# yapf
+# yappi
+# # yellowbrick==1.3.post1
+# yfinance
+# you-get
+# # pycaret==2.3.1
+# crc32c
+# SoundFile
+# gpflow
 
-# Jupyter
-facets-overview
-jupyter-client
-jupyter-console
-jupyter-core
-jupyter-kernel-gateway
-jupyter-server
-jupyter-server-proxy
-nbval
-papermill
-pivottablejs
-pythreejs
-qgrid
+# # Jupyter
+# facets-overview
+# jupyter-client
+# jupyter-console
+# jupyter-core
+# jupyter-kernel-gateway
+# jupyter-server
+# jupyter-server-proxy
+# nbval
+# papermill
+# pivottablejs
+# pythreejs
+# qgrid
 
-# jupyter_http_over_ws==0.0.7
-# Brokern: nbinteract==0.2.5
-# TOO big: apache-libcloud==3.2.0
-# Move to google utils: pandas-gbq==0.13.0
-# too big tensorflow-probability==0.9.0
-# out of date: records==0.5.3
-# adanet==0.9.0 -> too many pinned dependencies
+# # jupyter_http_over_ws==0.0.7
+# # Brokern: nbinteract==0.2.5
+# # TOO big: apache-libcloud==3.2.0
+# # Move to google utils: pandas-gbq==0.13.0
+# # too big tensorflow-probability==0.9.0
+# # out of date: records==0.5.3
+# # adanet==0.9.0 -> too many pinned dependencies
