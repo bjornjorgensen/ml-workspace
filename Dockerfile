@@ -760,13 +760,13 @@ RUN \
     # If minimal flavor - install
     if [ "$WORKSPACE_FLAVOR" = "minimal" ]; then \
         # Install nomkl - mkl needs lots of space
-        pip install -y --update-all 'python='$PYTHON_VERSION nomkl ; \
+        pip install --update-all 'python='$PYTHON_VERSION nomkl ; \
     else \
         # Install mkl for faster computations
-        pip install -y --update-all 'python='$PYTHON_VERSION mkl-service mkl ; \
+        pip install --update-all 'python='$PYTHON_VERSION mkl-service mkl ; \
     fi && \
     # Install some basics - required to run container
-    pip install -y --update-all \
+    pip install --update-all \
             'python='$PYTHON_VERSION \
             'ipython' \
             'notebook' \
@@ -798,14 +798,14 @@ RUN \
     fi && \
     # OpenMPI support
     apt-get install -y --no-install-recommends libopenmpi-dev openmpi-bin && \
-    pip install -y --freeze-installed  \
+    pip install  --freeze-installed  \
         'python='$PYTHON_VERSION \
         boost \
         mkl-include && \
     # Install mkldnn
-    pip install -y --freeze-installed -c mingfeima mkldnn && \
+    pip install --freeze-installed -c mingfeima mkldnn && \
     # Install pytorch - cpu only
-    pip install -y -c pytorch "pytorch" cpuonly && \
+    pip install -c pytorch "pytorch" cpuonly && \
     # Install light pip requirements
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed -r ${RESOURCES_PATH}/libraries/requirements-light.txt && \
     # If light light flavor - exit here
@@ -834,13 +834,13 @@ RUN \
     # Install Intel(R) Compiler Runtime - numba optimization
     # TODO: don't install, results in memory error: conda install -y --freeze-installed -c numba icc_rt && \
     # Install libjpeg turbo for speedup in image processing
-    pip install -y --freeze-installed libjpeg-turbo && \
+    pip install --freeze-installed libjpeg-turbo && \
     # Add snakemake for workflow management
-    conda install -y -c bioconda -c conda-forge snakemake-minimal && \
+    #conda install -y -c bioconda -c conda-forge snakemake-minimal && \
     # Add mamba as conda alternativ
     #conda install -y -c conda-forge mamba && \
     # Faiss - A library for efficient similarity search and clustering of dense vectors.
-    conda install -y --freeze-installed faiss-cpu && \
+    #conda install -y --freeze-installed faiss-cpu && \
     # Install full pip requirements
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed --use-deprecated=legacy-resolver -r ${RESOURCES_PATH}/libraries/requirements-full.txt && \
     # Setup Spacy
