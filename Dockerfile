@@ -154,7 +154,7 @@ RUN \
         libtiff-dev \
         libjpeg-dev \
         libpng-dev \
-        libglib2.0-0 \
+        #libglib2.0-0 \
         libxext6 \
         libsm6 \
         libxext-dev \
