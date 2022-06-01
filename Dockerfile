@@ -760,14 +760,14 @@ RUN \
     # If minimal flavor - install
     if [ "$WORKSPACE_FLAVOR" = "minimal" ]; then \
         # Install nomkl - mkl needs lots of space
-        pip install 'python='$PYTHON_VERSION nomkl ; \
+        pip install nomkl ; \
     else \
         # Install mkl for faster computations
-        pip install 'python='$PYTHON_VERSION mkl-service mkl ; \
+        pip install $PYTHON_VERSION mkl-service mkl ; \
     fi && \
     # Install some basics - required to run container
     pip install \
-            'python='$PYTHON_VERSION \
+            #'python='$PYTHON_VERSION \
             'ipython' \
             'notebook' \
             'jupyterlab' \
@@ -799,7 +799,7 @@ RUN \
     # OpenMPI support
     apt-get install -y --no-install-recommends libopenmpi-dev openmpi-bin && \
     pip install  --freeze-installed  \
-        'python='$PYTHON_VERSION \
+        #'python='$PYTHON_VERSION \
         boost \
         mkl-include && \
     # Install mkldnn
