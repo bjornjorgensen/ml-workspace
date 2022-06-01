@@ -310,6 +310,14 @@ COPY resources/nginx/lua-extensions /etc/nginx/nginx_plugins
 ##########################################################
 # From https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile
 
+
+
+
+# Configure environment
+ENV CONDA_DIR=/opt/conda
+
+ENV PATH="${CONDA_DIR}/bin:${PATH}" 
+
 # Pin python version here, or set it to "default"
 ARG PYTHON_VERSION=3.10
 
@@ -340,18 +348,18 @@ RUN set -x && \
         "https://micromamba.snakepit.net/api/micromamba/linux-${arch}/latest" && \
     tar -xvjf /tmp/micromamba.tar.bz2 --strip-components=1 bin/micromamba && \
     rm /tmp/micromamba.tar.bz2 && \
-#    PYTHON_SPECIFIER="python=${PYTHON_VERSION}" && \
-#    if [[ "${PYTHON_VERSION}" == "default" ]]; then PYTHON_SPECIFIER="python"; fi && \
-#    if [ "${arch}" == "aarch64" ]; then \
+    PYTHON_SPECIFIER="python=${PYTHON_VERSION}" && \
+    if [[ "${PYTHON_VERSION}" == "default" ]]; then PYTHON_SPECIFIER="python"; fi && \
+    if [ "${arch}" == "aarch64" ]; then \
         # Prevent libmamba from sporadically hanging on arm64 under QEMU
         # <https://github.com/mamba-org/mamba/issues/1611>
         # We don't use `micromamba config set` since it instead modifies ~/.condarc.
-#        echo "extract_threads: 1" >> "${CONDA_DIR}/.condarc"; \
-#    fi && \
+        echo "extract_threads: 1" >> "${CONDA_DIR}/.condarc"; \
+    fi && \
     # Install the packages
     ./micromamba install \
-       # --root-prefix="${CONDA_DIR}" \
-       # --prefix="${CONDA_DIR}" \
+        --root-prefix="${CONDA_DIR}" \
+        --prefix="${CONDA_DIR}" \
         --yes \
         "${PYTHON_SPECIFIER}" \
         'mamba' \
@@ -372,7 +380,7 @@ RUN set -x && \
 #    fix-permissions.sh $CONDA_ROOT && \
     clean-layer.sh
 
-ENV PATH=$CONDA_ROOT/bin:$PATH
+#ENV PATH=$CONDA_ROOT/bin:$PATH
 
 # There is nothing added yet to LD_LIBRARY_PATH, so we can overwrite
 ENV LD_LIBRARY_PATH=$CONDA_ROOT/lib
