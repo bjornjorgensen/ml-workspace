@@ -834,7 +834,7 @@ RUN \
     # Install Intel(R) Compiler Runtime - numba optimization
     # TODO: don't install, results in memory error: conda install -y --freeze-installed -c numba icc_rt && \
     # Install libjpeg turbo for speedup in image processing
-    pip install libjpeg-turbo && \
+    #pip install libjpeg-turbo && \
     # Add snakemake for workflow management
     #conda install -y -c bioconda -c conda-forge snakemake-minimal && \
     # Add mamba as conda alternativ
