@@ -19,7 +19,7 @@ if [ ! -f "/usr/local/bin/code-server"  ]; then
     cd ${RESOURCES_PATH}
     VS_CODE_VERSION=4.4.0
     # Use yarn install since it is smaller
-    yarn --production --frozen-lockfile location=global add code-server@"$VS_CODE_VERSION"
+    yarn --production --frozen-lockfile global add code-server@"$VS_CODE_VERSION"
     yarn cache clean
     ln -s /usr/local/bin/code-server /usr/bin/code-server
     #wget -q https://github.com/cdr/code-server/releases/download/v$VS_CODE_VERSION/code-server_${VS_CODE_VERSION}_amd64.deb -O ./code-server.deb
