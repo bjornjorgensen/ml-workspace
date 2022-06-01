@@ -760,13 +760,13 @@ RUN \
     # If minimal flavor - install
     if [ "$WORKSPACE_FLAVOR" = "minimal" ]; then \
         # Install nomkl - mkl needs lots of space
-        pip install --update-all 'python='$PYTHON_VERSION nomkl ; \
+        pip install 'python='$PYTHON_VERSION nomkl ; \
     else \
         # Install mkl for faster computations
-        pip install --update-all 'python='$PYTHON_VERSION mkl-service mkl ; \
+        pip install 'python='$PYTHON_VERSION mkl-service mkl ; \
     fi && \
     # Install some basics - required to run container
-    pip install --update-all \
+    pip install \
             'python='$PYTHON_VERSION \
             'ipython' \
             'notebook' \
