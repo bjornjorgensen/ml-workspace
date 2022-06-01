@@ -803,7 +803,7 @@ RUN \
         boost \
         mkl-include && \
     # Install mkldnn
-    pip install -c mingfeima mkldnn && \
+    #pip install -c mingfeima mkldnn && \
     # Install pytorch - cpu only
     pip install -c pytorch "pytorch" cpuonly && \
     # Install light pip requirements
