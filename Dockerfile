@@ -798,12 +798,12 @@ RUN \
     fi && \
     # OpenMPI support
     apt-get install -y --no-install-recommends libopenmpi-dev openmpi-bin && \
-    pip install  --freeze-installed  \
+    pip install \
         #'python='$PYTHON_VERSION \
         boost \
         mkl-include && \
     # Install mkldnn
-    pip install --freeze-installed -c mingfeima mkldnn && \
+    pip install -c mingfeima mkldnn && \
     # Install pytorch - cpu only
     pip install -c pytorch "pytorch" cpuonly && \
     # Install light pip requirements
@@ -834,7 +834,7 @@ RUN \
     # Install Intel(R) Compiler Runtime - numba optimization
     # TODO: don't install, results in memory error: conda install -y --freeze-installed -c numba icc_rt && \
     # Install libjpeg turbo for speedup in image processing
-    pip install --freeze-installed libjpeg-turbo && \
+    pip install libjpeg-turbo && \
     # Add snakemake for workflow management
     #conda install -y -c bioconda -c conda-forge snakemake-minimal && \
     # Add mamba as conda alternativ
