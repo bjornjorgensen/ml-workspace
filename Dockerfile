@@ -761,7 +761,7 @@ RUN \
     if [ "$WORKSPACE_FLAVOR" = "minimal" ]; then \
         # Install nomkl - mkl needs lots of space
         pip install nomkl ; \
-    else \
+    #else \
         # Install mkl for faster computations
        # pip install mkl-service mkl ; \
     #fi && \
