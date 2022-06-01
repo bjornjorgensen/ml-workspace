@@ -366,10 +366,10 @@ RUN set -x && \
     npm cache clean --force && \
 #    jupyter lab clean && \
 #    rm -rf "/home/${NB_USER}/.cache/yarn" && \
-#    fix-permissions "${CONDA_DIR}" && \
+    fix-permissions "${CONDA_DIR}" && \
 #    fix-permissions "/home/${NB_USER}"
     # Fix permissions
-    fix-permissions.sh $CONDA_ROOT && \
+#    fix-permissions.sh $CONDA_ROOT && \
     clean-layer.sh
 
 ENV PATH=$CONDA_ROOT/bin:$PATH
