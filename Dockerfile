@@ -845,7 +845,7 @@ RUN \
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed --use-deprecated=legacy-resolver -r ${RESOURCES_PATH}/libraries/requirements-full.txt && \
     # Setup Spacy
     # Spacy - download and large language removal
-    pip -m spacy download en && \
+    #pip -m spacy download en && \
     # Fix permissions
     fix-permissions.sh && \
     # Cleanup
