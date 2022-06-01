@@ -805,7 +805,7 @@ RUN \
     # Install mkldnn
     #pip install -c mingfeima mkldnn && \
     # Install pytorch - cpu only
-    pip install -c pytorch "pytorch" cpuonly && \
+    #pip install -c pytorch "pytorch" cpuonly && \
     # Install light pip requirements
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed -r ${RESOURCES_PATH}/libraries/requirements-light.txt && \
     # If light light flavor - exit here
