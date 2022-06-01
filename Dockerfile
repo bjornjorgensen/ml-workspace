@@ -763,7 +763,7 @@ RUN \
         pip install nomkl ; \
     else \
         # Install mkl for faster computations
-        pip install $PYTHON_VERSION mkl-service mkl ; \
+        pip install mkl-service mkl ; \
     fi && \
     # Install some basics - required to run container
     pip install \
