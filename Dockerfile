@@ -90,6 +90,7 @@ RUN \
         python3 \
         #https://github.com/pypa/get-pip/issues/124
         python3.10-distutils \
+        python3.10-venv \
         clinfo \
         time \
         libssl-dev \
