@@ -1,6 +1,6 @@
-*
-!resources/
-**/.DS_Store
-**/Thumbs.db
-**/*.pyc
-.DS_Store
+# *
+# !resources/
+# **/.DS_Store
+# **/Thumbs.db
+# **/*.pyc
+# .DS_Store

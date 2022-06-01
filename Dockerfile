@@ -86,6 +86,10 @@ RUN \
         uuid-dev \
         csh \
         xclip \
+        #install python her
+        python3 \
+        #https://github.com/pypa/get-pip/issues/124
+        python3.10-distutils \
         clinfo \
         time \
         libssl-dev \
@@ -259,13 +263,107 @@ COPY resources/nginx/lua-extensions /etc/nginx/nginx_plugins
 
 ### END BASICS ###
 
+#RUN Print test
+
+# #https://stackoverflow.com/questions/68193812/micromamba-inside-docker-container
+# RUN wget -qO-  https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba \
+#     && touch /root/.bashrc \
+#     && ./bin/micromamba shell init -s bash -p /opt/conda  \
+#     && grep -v '[ -z "\$PS1" ] && return' /root/.bashrc  > /opt/conda/bashrc   # this line has been modified \
+#     && apt-get clean autoremove --yes \
+#     && rm -rf /var/lib/{apt,dpkg,cache,log}
+
+
+
+# RUN micromamba activate \
+#     micromamba install python=3.10 jupyter -c conda-forge
+
+
+#./bin/micromamba shell init -s bash -p ~/micromamba
+#source ~/.bashrc
+
+#
+# ENV \
+#     # TODO: MAMBA_ROOT_PREFIX is deprecated and should be removed in the future
+#     MAMBA_ROOT_PREFIX=/opt/conda \
+#     MAMBA_ROOT=/opt/conda \
+#     PYTHON_VERSION="3.8.10" \
+#     CONDA_PYTHON_DIR=/opt/conda/lib/python3.8 \
+#     MINICONDA_VERSION=4.9.2 \
+#     MINICONDA_MD5=122c8c9beb51e124ab32a0fa6426c656 \
+#     CONDA_VERSION=4.9.2 
+# ARG VERSION=0.23.3
+
+# RUN wget --no-verbose https://micromamba.snakepit.net/api/micromamba/linux-${ARCH}/${VERSION} -O ~/miniconda.sh && \
+#     echo "${MINICONDA_MD5} *miniconda.sh" | md5sum -c - && \
+#     /bin/bash ~/miniconda.sh -b -p $MAMBA_ROOT && \
+#     export PATH=$MAMBA_ROOT/bin:$PATH && \
+#     rm ~/miniconda.sh && \
+#     # Configure conda
+#     # TODO: Add conde-forge as main channel -> remove if testted
+#     # TODO, use condarc file
+#     $MAMBA_ROOT/bin/conda config --system --add channels conda-forge && \
+#     $MAMBA_ROOT/bin/conda config --system --set auto_update_conda False && \
+#     $MAMBA_ROOT/bin/conda config --system --set show_channel_urls True && \
+#     $MAMBA_ROOT/bin/conda config --system --set channel_priority strict && \
+#     # Deactivate pip interoperability (currently default), otherwise conda tries to uninstall pip packages
+#     $MAMBA_ROOT/bin/conda config --system --set pip_interop_enabled false && \
+#     # Update conda
+#     $MAMBA_ROOT/bin/conda update -y -n base -c defaults conda && \
+#     $MAMBA_ROOT/bin/conda update -y setuptools && \
+#     $MAMBA_ROOT/bin/conda install -y conda-build && \
+#     # Update selected packages - install python 3.8.x
+#     $MAMBA_ROOT/bin/conda install -y --update-all python=$PYTHON_VERSION && \
+#     # Link Conda
+#     ln -s $MAMBA_ROOT/bin/python /usr/local/bin/python && \
+#     ln -s $MAMBA_ROOT/bin/conda /usr/bin/conda && \
+#     # Update
+#     $MAMBA_ROOT/bin/conda install -y pip && \
+#     $MAMBA_ROOT/bin/pip install --upgrade pip && \
+#     chmod -R a+rwx /usr/local/bin/ && \
+#     # Cleanup - Remove all here since conda is not in path as of now
+#     # find /opt/conda/ -follow -type f -name '*.a' -delete && \
+#     # find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
+#     $MAMBA_ROOT/bin/conda clean -y --packages && \
+#     $MAMBA_ROOT/bin/conda clean -y -a -f  && \
+#     $MAMBA_ROOT/bin/conda build purge-all && \
+#     # Fix permissions
+#     fix-permissions.sh $MAMBA_ROOT && \
+#     clean-layer.sh
+
+# ENV PATH=$MAMBA_ROOT/bin:$PATH
+
+# # There is nothing added yet to LD_LIBRARY_PATH, so we can overwrite
+# ENV LD_LIBRARY_PATH=$MAMBA_ROOT/lib
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### RUNTIMES ###
 # Install Miniconda: https://repo.continuum.io/miniconda/
 
 # ENV \
-#     # TODO: CONDA_DIR is deprecated and should be removed in the future
-#     CONDA_DIR=/opt/conda \
-#     CONDA_ROOT=/opt/conda \
+#     # TODO: MAMBA_ROOT_PREFIX is deprecated and should be removed in the future
+#     MAMBA_ROOT_PREFIX=/opt/conda \
+#     MAMBA_ROOT=/opt/conda \
 #     PYTHON_VERSION="3.9.13" \
 #     CONDA_PYTHON_DIR=/opt/conda/lib/python3.9 \
 #     #MINICONDA_VERSION=4.9.2 \
@@ -274,52 +372,72 @@ COPY resources/nginx/lua-extensions /etc/nginx/nginx_plugins
 
 # RUN wget --no-verbose https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
 #     #echo "${MINICONDA_MD5} *miniconda.sh" | md5sum -c - && \
-#     /bin/bash ~/miniconda.sh -b -p $CONDA_ROOT && \
-#     export PATH=$CONDA_ROOT/bin:$PATH && \
+#     /bin/bash ~/miniconda.sh -b -p $MAMBA_ROOT && \
+#     export PATH=$MAMBA_ROOT/bin:$PATH && \
 #     rm ~/miniconda.sh && \
 #     # Configure conda
 #     # TODO: Add conde-forge as main channel -> remove if testted
 #     # TODO, use condarc file
-#     $CONDA_ROOT/bin/conda config --system --add channels conda-forge && \
-#     $CONDA_ROOT/bin/conda config --system --set auto_update_conda False && \
-#     $CONDA_ROOT/bin/conda config --system --set show_channel_urls True && \
-#     $CONDA_ROOT/bin/conda config --system --set channel_priority strict && \
+#     $MAMBA_ROOT/bin/conda config --system --add channels conda-forge && \
+#     $MAMBA_ROOT/bin/conda config --system --set auto_update_conda False && \
+#     $MAMBA_ROOT/bin/conda config --system --set show_channel_urls True && \
+#     $MAMBA_ROOT/bin/conda config --system --set channel_priority strict && \
 #     # Deactivate pip interoperability (currently default), otherwise conda tries to uninstall pip packages
-#     $CONDA_ROOT/bin/conda config --system --set pip_interop_enabled false && \
+#     $MAMBA_ROOT/bin/conda config --system --set pip_interop_enabled false && \
 #     # Update conda
-#     $CONDA_ROOT/bin/conda update -y -n base -c defaults conda && \
-#     $CONDA_ROOT/bin/conda update -y setuptools && \
-#     $CONDA_ROOT/bin/conda install -y conda-build && \
+#     $MAMBA_ROOT/bin/conda update -y -n base -c defaults conda && \
+#     $MAMBA_ROOT/bin/conda update -y setuptools && \
+#     $MAMBA_ROOT/bin/conda install -y conda-build && \
 #     # Update selected packages - install python 3.8.x
-#     $CONDA_ROOT/bin/conda install -y --update-all python=$PYTHON_VERSION && \
+#     $MAMBA_ROOT/bin/conda install -y --update-all python=$PYTHON_VERSION && \
 #     # Link Conda
-#     ln -s $CONDA_ROOT/bin/python /usr/local/bin/python && \
-#     ln -s $CONDA_ROOT/bin/conda /usr/bin/conda && \
+#     ln -s $MAMBA_ROOT/bin/python /usr/local/bin/python && \
+#     ln -s $MAMBA_ROOT/bin/conda /usr/bin/conda && \
 #     # Update
-#     $CONDA_ROOT/bin/conda install -y pip && \
-#     $CONDA_ROOT/bin/pip install --upgrade pip && \
+#     $MAMBA_ROOT/bin/conda install -y pip && \
+#     $MAMBA_ROOT/bin/pip install --upgrade pip && \
 #     chmod -R a+rwx /usr/local/bin/ && \
 #     # Cleanup - Remove all here since conda is not in path as of now
 #     # find /opt/conda/ -follow -type f -name '*.a' -delete && \
 #     # find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
-#     $CONDA_ROOT/bin/conda clean -y --packages && \
-#     $CONDA_ROOT/bin/conda clean -y -a -f  && \
-#     $CONDA_ROOT/bin/conda build purge-all && \
-
-
-##########################################################
-# From https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile
+#     $MAMBA_ROOT/bin/conda clean -y --packages && \
+#     $MAMBA_ROOT/bin/conda clean -y -a -f  && \
+#     $MAMBA_ROOT/bin/conda build purge-all && \
 
 
 
 
-# Configure environment
-ENV CONDA_DIR=/opt/conda
+# #SHELL ["/bin/bash", "-c"]
+# ENV BASH_ENV ~/.bashrc
 
-ENV PATH="${CONDA_DIR}/bin:${PATH}" 
+# # Install basic commands and mamba
+# RUN wget -qO- https://micromamba.snakepit.net/api/micromamba/linux-64/latest | tar -xvj bin/micromamba --strip-components=1 && \
+#     ./micromamba ~/micromamba 
 
-# Pin python version here, or set it to "default"
-ARG PYTHON_VERSION=3.10
+# RUN micromamba activate && \
+#     micromamba install -y -n base python=3.8.6 pip -c conda-forge && \
+#     rm /root/micromamba/lib/*.a && \
+#     rm -rf /root/micromamba/pkgs/
+
+# ##########################################################
+# # From https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile
+
+
+
+
+# # Configure environment
+# ENV MAMBA_ROOT_PREFIX=/opt/conda
+
+# ENV PATH="${MAMBA_ROOT_PREFIX}/bin:${PATH}" 
+
+
+
+# RUN mkdir -p /opt/conda && \
+#     fix-permissions.sh $MAMBA_ROOT
+# # Pin python version here, or set it to "default"
+# ARG PYTHON_VERSION=3.10
+
+# COPY .condarc /opt/conda/
 
 # Setup work directory for backward-compatibility
 #RUN mkdir "/home/${NB_USER}/work" && \
@@ -336,54 +454,59 @@ ARG PYTHON_VERSION=3.10
 # Correct permissions
 # Do all this in a single RUN command to avoid duplicating all of the
 # files across image layers when the permissions change
-#COPY --chown="${NB_UID}:${NB_GID}" initial-condarc "${CONDA_DIR}/.condarc"
-WORKDIR /tmp
-RUN set -x && \
-    arch=$(uname -m) && \
-    if [ "${arch}" = "x86_64" ]; then \
-        # Should be simpler, see <https://github.com/mamba-org/mamba/issues/1437>
-        arch="64"; \
-    fi && \
-    wget -qO /tmp/micromamba.tar.bz2 \
-        "https://micromamba.snakepit.net/api/micromamba/linux-${arch}/latest" && \
-    tar -xvjf /tmp/micromamba.tar.bz2 --strip-components=1 bin/micromamba && \
-    rm /tmp/micromamba.tar.bz2 && \
-    PYTHON_SPECIFIER="python=${PYTHON_VERSION}" && \
-    if [[ "${PYTHON_VERSION}" == "default" ]]; then PYTHON_SPECIFIER="python"; fi && \
-    if [ "${arch}" == "aarch64" ]; then \
-        # Prevent libmamba from sporadically hanging on arm64 under QEMU
-        # <https://github.com/mamba-org/mamba/issues/1611>
-        # We don't use `micromamba config set` since it instead modifies ~/.condarc.
-        echo "extract_threads: 1" >> "${CONDA_DIR}/.condarc"; \
-    fi && \
-    # Install the packages
-    ./micromamba install \
-        --root-prefix="${CONDA_DIR}" \
-        --prefix="${CONDA_DIR}" \
-        --yes \
-        "${PYTHON_SPECIFIER}" \
-        'mamba' \
-#        'notebook' \
-#        'jupyterhub' \
-#        'jupyterlab' && \
-    rm micromamba && \
-    # Pin major.minor version of python
-    mamba list python | grep '^python ' | tr -s ' ' | cut -d ' ' -f 1,2 >> "${CONDA_DIR}/conda-meta/pinned" && \
-#    jupyter notebook --generate-config && \
-    mamba clean --all -f -y && \
-    npm cache clean --force && \
-#    jupyter lab clean && \
-#    rm -rf "/home/${NB_USER}/.cache/yarn" && \
-    fix-permissions "${CONDA_DIR}" && \
-#    fix-permissions "/home/${NB_USER}"
-    # Fix permissions
-#    fix-permissions.sh $CONDA_ROOT && \
-    clean-layer.sh
+#COPY --chown="${NB_UID}:${NB_GID}" initial-condarc "${MAMBA_ROOT_PREFIX}/.condarc"
+# WORKDIR /tmp
+# RUN set -x && \
+#     arch="64" && \
+# #    if [ "${arch}" = "x86_64" ]; then \
+#         # Should be simpler, see <https://github.com/mamba-org/mamba/issues/1437>
+# #        arch="64"; \
+# #    fi && \
+#     wget -qO /tmp/micromamba.tar.bz2 \
+#         "https://micromamba.snakepit.net/api/micromamba/linux-${arch}/latest" && \
+#     tar -xvjf /tmp/micromamba.tar.bz2 --strip-components=1 bin/micromamba && \
+#     rm /tmp/micromamba.tar.bz2 && \
+#     PYTHON_SPECIFIER="python=${PYTHON_VERSION}" && \
+# #    if [[ "${PYTHON_VERSION}" == "default" ]]; then PYTHON_SPECIFIER="python"; fi && \
+# #    if [ "${arch}" == "aarch64" ]; then \
+#         # Prevent libmamba from sporadically hanging on arm64 under QEMU
+#         # <https://github.com/mamba-org/mamba/issues/1611>
+#         # We don't use `micromamba config set` since it instead modifies ~/.condarc.
+#         echo "extract_threads: 1" >> ${MAMBA_ROOT_PREFIX}/.condarc; \
+#  #   fi && \
+#     # Install the packages
+#     ./micromamba install \
+#         --root-prefix=${MAMBA_ROOT_PREFIX} \
+#         --prefix=${MAMBA_ROOT_PREFIX} \
+#         --yes \
+#         "${PYTHON_SPECIFIER}" \
+#         'mamba' \
+# #        'notebook' \
+# #        'jupyterhub' \
+# #        'jupyterlab' && \
+# #    rm micromamba && \
+#     # Pin major.minor version of python
+# #    mamba list python | grep '^python ' | tr -s ' ' | cut -d ' ' -f 1,2 >> "${MAMBA_ROOT_PREFIX}/conda-meta/pinned" && \
+# #    jupyter notebook --generate-config && \
+# #    mamba clean --all -f -y && \
+# #    npm cache clean --force && \
+# #    jupyter lab clean && \
+# #    rm -rf "/home/${NB_USER}/.cache/yarn" && \
+# #    fix-permissions "${MAMBA_ROOT_PREFIX}" && \
+# #    fix-permissions "/home/${NB_USER}"
+#     # Fix permissions
+# #    fix-permissions.sh $MAMBA_ROOT && \
+# #    clean-layer.sh
 
-#ENV PATH=$CONDA_ROOT/bin:$PATH
+# ENV PATH=$MAMBA_ROOT/bin:$PATH
 
 # There is nothing added yet to LD_LIBRARY_PATH, so we can overwrite
-ENV LD_LIBRARY_PATH=$CONDA_ROOT/lib
+#ENV LD_LIBRARY_PATH=$MAMBA_ROOT/lib
+
+
+
+RUN curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python3 get-pip.py 
 
 # Install pyenv to allow dynamic creation of python versions
 RUN git clone https://github.com/pyenv/pyenv.git $RESOURCES_PATH/.pyenv && \
@@ -405,7 +528,7 @@ ENV PATH=$RESOURCES_PATH/.pyenv/shims:$RESOURCES_PATH/.pyenv/bin:$PATH \
 # Install pipx
 RUN pip install pipx && \
     # Configure pipx
-    python -m pipx ensurepath && \
+    python3 -m pipx ensurepath && \
     # Cleanup
     clean-layer.sh
 ENV PATH=$HOME/.local/bin:$PATH
@@ -418,8 +541,8 @@ RUN \
     apt-get install -y nodejs && \
     # As conda is first in path, the commands 'node' and 'npm' reference to the version of conda.
     # Replace those versions with the newly installed versions of node
-    rm -f /opt/conda/bin/node && ln -s /usr/bin/node /opt/conda/bin/node && \
-    rm -f /opt/conda/bin/npm && ln -s /usr/bin/npm /opt/conda/bin/npm && \
+    #rm -f /opt/conda/bin/node && ln -s /usr/bin/node /opt/conda/bin/node && \
+    #rm -f /opt/conda/bin/npm && ln -s /usr/bin/npm /opt/conda/bin/npm && \
     # Fix permissions
     chmod a+rwx /usr/bin/node && \
     chmod a+rwx /usr/bin/npm && \
@@ -531,7 +654,7 @@ RUN \
 # Add the defaults from /lib/x86_64-linux-gnu, otherwise lots of no version errors
 # cannot be added above otherwise there are errors in the installation of the gui tools
 # Call order: https://unix.stackexchange.com/questions/367600/what-is-the-order-that-linuxs-dynamic-linker-searches-paths-in
-ENV LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:$CONDA_ROOT/lib
+ENV LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:$MAMBA_ROOT/lib
 
 # Install VNC
 RUN \
@@ -625,24 +748,24 @@ COPY resources/libraries ${RESOURCES_PATH}/libraries
 RUN \
     # Link Conda - All python are linke to the conda instances
     # Linking python 3 crashes conda -> cannot install anyting - remove instead
-    # ln -s -f $CONDA_ROOT/bin/python /usr/bin/python3 && \
+    # ln -s -f $MAMBA_ROOT/bin/python /usr/bin/python3 && \
     # if removed -> cannot use add-apt-repository
     # rm /usr/bin/python3 && \
     # rm /usr/bin/python3.5
-    ln -s -f $CONDA_ROOT/bin/python /usr/bin/python && \
+    #ln -s -f $MAMBA_ROOT/bin/python /usr/bin/python && \
     apt-get update && \
     # upgrade pip
     pip install --upgrade pip && \
     # If minimal flavor - install
     if [ "$WORKSPACE_FLAVOR" = "minimal" ]; then \
         # Install nomkl - mkl needs lots of space
-        conda install -y --update-all 'python='$PYTHON_VERSION nomkl ; \
+        pip install -y --update-all 'python='$PYTHON_VERSION nomkl ; \
     else \
         # Install mkl for faster computations
-        conda install -y --update-all 'python='$PYTHON_VERSION mkl-service mkl ; \
+        pip install -y --update-all 'python='$PYTHON_VERSION mkl-service mkl ; \
     fi && \
     # Install some basics - required to run container
-    conda install -y --update-all \
+    pip install -y --update-all \
             'python='$PYTHON_VERSION \
             'ipython' \
             'notebook' \
@@ -659,7 +782,7 @@ RUN \
             # installed via apt-get and pip: protobuf \
             # installed via apt-get: zlib  && \
     # Switch of channel priority, makes some trouble
-    conda config --system --set channel_priority false && \
+    #conda config --system --set channel_priority false && \
     # Install minimal pip requirements
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed -r ${RESOURCES_PATH}/libraries/requirements-minimal.txt && \
     # If minimal flavor - exit here
@@ -667,27 +790,27 @@ RUN \
         # Remove pandoc - package for markdown conversion - not needed
         # TODO: conda remove -y --force pandoc && \
         # Fix permissions
-        fix-permissions.sh $CONDA_ROOT && \
+        fix-permissions.sh && \
         # Cleanup
         clean-layer.sh && \
         exit 0 ; \
     fi && \
     # OpenMPI support
     apt-get install -y --no-install-recommends libopenmpi-dev openmpi-bin && \
-    conda install -y --freeze-installed  \
+    pip install -y --freeze-installed  \
         'python='$PYTHON_VERSION \
         boost \
         mkl-include && \
     # Install mkldnn
-    conda install -y --freeze-installed -c mingfeima mkldnn && \
+    pip install -y --freeze-installed -c mingfeima mkldnn && \
     # Install pytorch - cpu only
-    conda install -y -c pytorch "pytorch" cpuonly && \
+    pip install -y -c pytorch "pytorch" cpuonly && \
     # Install light pip requirements
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed -r ${RESOURCES_PATH}/libraries/requirements-light.txt && \
     # If light light flavor - exit here
     if [ "$WORKSPACE_FLAVOR" = "light" ]; then \
         # Fix permissions
-        fix-permissions.sh $CONDA_ROOT && \
+        fix-permissions.sh && \
         # Cleanup
         clean-layer.sh && \
         exit 0 ; \
@@ -710,28 +833,28 @@ RUN \
     # Install Intel(R) Compiler Runtime - numba optimization
     # TODO: don't install, results in memory error: conda install -y --freeze-installed -c numba icc_rt && \
     # Install libjpeg turbo for speedup in image processing
-    conda install -y --freeze-installed libjpeg-turbo && \
+    pip install -y --freeze-installed libjpeg-turbo && \
     # Add snakemake for workflow management
     conda install -y -c bioconda -c conda-forge snakemake-minimal && \
     # Add mamba as conda alternativ
-    conda install -y -c conda-forge mamba && \
+    #conda install -y -c conda-forge mamba && \
     # Faiss - A library for efficient similarity search and clustering of dense vectors.
     conda install -y --freeze-installed faiss-cpu && \
     # Install full pip requirements
     pip install --no-cache-dir --upgrade --upgrade-strategy only-if-needed --use-deprecated=legacy-resolver -r ${RESOURCES_PATH}/libraries/requirements-full.txt && \
     # Setup Spacy
     # Spacy - download and large language removal
-    python -m spacy download en && \
+    pip -m spacy download en && \
     # Fix permissions
-    fix-permissions.sh $CONDA_ROOT && \
+    fix-permissions.sh && \
     # Cleanup
     clean-layer.sh
 
 # Fix conda version
-RUN \
+#RUN \
     # Conda installs wrong node version - relink conda node to the actual node
-    rm -f /opt/conda/bin/node && ln -s /usr/bin/node /opt/conda/bin/node && \
-    rm -f /opt/conda/bin/npm && ln -s /usr/bin/npm /opt/conda/bin/npm
+ #   rm -f /opt/conda/bin/node && ln -s /usr/bin/node /opt/conda/bin/node && \
+ #   rm -f /opt/conda/bin/npm && ln -s /usr/bin/npm /opt/conda/bin/npm
 
 ### END DATA SCIENCE BASICS ###
 
@@ -805,7 +928,7 @@ RUN \
     # currently not working jupyter serverextension enable voila --sys-prefix && \
     # Enable ipclusters
     ipcluster nbextension enable && \
-    # Fix permissions? fix-permissions.sh $CONDA_ROOT && \
+    # Fix permissions? fix-permissions.sh $MAMBA_ROOT && \
     # Cleanup
     clean-layer.sh
 
@@ -825,7 +948,7 @@ RUN \
         # Cleanup
         jupyter lab clean && \
         jlpm cache clean && \
-        rm -rf $CONDA_ROOT/share/jupyter/lab/staging && \
+        #rm -rf $MAMBA_ROOT/share/jupyter/lab/staging && \
         clean-layer.sh && \
         exit 0 ; \
     fi && \
@@ -846,7 +969,7 @@ RUN \
         # Cleanup
         jupyter lab clean && \
         jlpm cache clean && \
-        rm -rf $CONDA_ROOT/share/jupyter/lab/staging && \
+        #rm -rf $MAMBA_ROOT/share/jupyter/lab/staging && \
         clean-layer.sh && \
         exit 0 ; \
     fi \
@@ -878,7 +1001,7 @@ RUN \
     jupyter lab clean && \
     jlpm cache clean && \
     # Remove build folder -> should be remove by lab clean as well?
-    rm -rf $CONDA_ROOT/share/jupyter/lab/staging && \
+    #rm -rf $MAMBA_ROOT/share/jupyter/lab/staging && \
     clean-layer.sh
 
 # Install Jupyter Tooling Extension
@@ -899,7 +1022,7 @@ RUN \
     # Initialize conda for command line activation
     # TODO do not activate for now, opening the bash shell is a bit slow
     # conda init bash && \
-    conda init zsh && \
+    #conda init zsh && \
     chsh -s $(which zsh) $NB_USER && \
     # Install sdkman - needs to be executed after zsh
     curl -s https://get.sdkman.io | bash && \
@@ -1051,7 +1174,7 @@ ENV \
     VNC_COL_DEPTH=24
 
 # Add tensorboard patch - use tensorboard jupyter plugin instead of the actual tensorboard magic
-COPY resources/jupyter/tensorboard_notebook_patch.py $CONDA_PYTHON_DIR/site-packages/tensorboard/notebook.py
+#COPY resources/jupyter/tensorboard_notebook_patch.py $CONDA_PYTHON_DIR/site-packages/tensorboard/notebook.py
 
 # Additional jupyter configuration
 COPY resources/jupyter/jupyter_notebook_config.py /etc/jupyter/
@@ -1239,7 +1362,7 @@ LABEL \
 # use global option with tini to kill full process groups: https://github.com/krallin/tini#process-group-killing
 ENTRYPOINT ["/tini", "-g", "--"]
 
-CMD ["python", "/resources/docker-entrypoint.py"]
+CMD ["python3", "/resources/docker-entrypoint.py"]
 
 # Port 8080 is the main access port (also includes SSH)
 # Port 5091 is the VNC port
