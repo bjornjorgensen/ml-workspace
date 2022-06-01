@@ -764,7 +764,7 @@ RUN \
     else \
         # Install mkl for faster computations
        # pip install mkl-service mkl ; \
-    fi && \
+    #fi && \
     # Install some basics - required to run container
     pip install \
             #'python='$PYTHON_VERSION \
