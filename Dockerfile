@@ -350,8 +350,8 @@ RUN set -x && \
 #    fi && \
     # Install the packages
     ./micromamba install \
-        --root-prefix="${CONDA_DIR}" \
-        --prefix="${CONDA_DIR}" \
+       # --root-prefix="${CONDA_DIR}" \
+       # --prefix="${CONDA_DIR}" \
         --yes \
         "${PYTHON_SPECIFIER}" \
         'mamba' \
